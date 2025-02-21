@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Home Page</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" href="favicon.png" type="image/png">
+
+    <!-- Import a Google Font for a nicer look -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap">
+
+    <style>
+      /* Base styling */
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+  
+      body {
+        font-family: 'Roboto', sans-serif;
+        background: #e9f3f9 url('light-background.jpg') no-repeat center center fixed;
+        background-size: cover;
+        color: #333;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        padding: 1rem;
+        /*animation: fadeIn 1s ease-in;*/
+      }
+  
+      /* Fade in animation for the page */
+      @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+      }
+  
+      /* Wrapper for both bookmark containers */
+      .bookmark-wrapper {
+        display: flex;
+        gap: 2rem;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: flex-start;
+        /*animation: slideUp 1s ease-out;*/
+      }
+  
+      /* Slide up animation for the container */
+      @keyframes slideUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+  
+      .bookmark-container {
+        background: rgba(0, 0, 0, 0.5); /* semi-transparent */
+        backdrop-filter: blur(10px);    /* applies the blur to whatever is behind */
+        border-radius: 8px;
+        padding: 1.5rem;
+        width: 250px;
+        max-width: 90vw;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      }
+  
+      .bookmark-container h2 {
+        margin-bottom: 1rem;
+        font-size: 1.25rem;
+      }
+  
+      /* List styling */
+      .bookmark-container ul {
+        list-style: none;
+        padding: 0;
+      }
+  
+      .bookmark-container li {
+        margin-bottom: 0.75rem;
+        opacity: 1;
+        /*animation: fadeInUp 0.5s ease-out forwards;*/
+      }
+  
+      /* Stagger list items */
+      .bookmark-container li:nth-child(1) { animation-delay: 0.1s; }
+      .bookmark-container li:nth-child(2) { animation-delay: 0.2s; }
+      .bookmark-container li:nth-child(3) { animation-delay: 0.3s; }
+      .bookmark-container li:nth-child(4) { animation-delay: 0.4s; }
+  
+      /* Fade in and slight upward movement for list items */
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+  
+      .bookmark-container a {
+        text-decoration: none;
+        font-weight: 500;
+        color: inherit;
+        transition: transform 0.2s ease, opacity 0.2s ease;
+      }
+  
+      .bookmark-container a:hover {
+        transform: scale(1.05);
+        opacity: 0.8;
+      }
+  
+      /* Individual link colors */
+      .chatgpt { color: #10a37f; }
+      .whatsapp { color: #25d366; }
+      .gmail { color: #ea4335; }
+      .youtube { color: #ff0000; }
+      .reddit { color: #ff4500; }
+      .poolsuite { color: #b86e4c; }
+      .jellyfin { color: #8a6ad1; }
+
+      /* Manual dark mode override */
+      body.dark-mode {
+        background: #1f1f1f url('dark-background.jpg') no-repeat center center fixed;
+        background-size: cover;
+        color: #fff;
+      }
+
+      body:not(.dark-mode) {
+        background: #e9f3f9 url('light-background.jpg') no-repeat center center fixed;
+        background-size: cover;
+        color: #333;
+      }
+
+      /* Bookmark container dark mode adjustment */
+      body.dark-mode .bookmark-container {
+        background: rgba(44, 44, 44, 0.5);
+      }
+      body:not(.dark-mode) .bookmark-container {
+        background: rgba(190, 190, 190, 0.5);
+      }
+
+      /* Styling the dark/light mode buttons */
+      #toggle-mode {
+        padding: 1rem 1rem;
+        border: none;
+        border-radius: 4px;
+        transition: background 0.3s ease;
+        position: fixed;
+        top: 1px;
+        right: 1px; 
+        background: transparent; /* semi-transparent */
+      }
+  
+      #toggle-mode:hover {
+        opacity: 0.8;
+      }
+
+      /* Icon filter rules */
+      #toggle-mode img {
+        transition: filter 0.3s ease;
+      }
+      body.dark-mode #toggle-mode img {
+        filter: invert(1);
+      }
+      body:not(.dark-mode) #toggle-mode img {
+        filter: invert(0);
+      }
+  </style>
+
+  </head>
+  <body>
+    <!-- Dark/Light Theme Activation Buttons -->
+    <button id="toggle-mode">
+      <img src="device-theme.png" alt="Theme Toggle" style="height:1.5rem; vertical-align: middle;">
+    </button>
+
+    <div class="bookmark-wrapper">
+      
+      <!-- First Container -->
+      <div class="bookmark-container">
+        <h2>Bookmarks</h2>
+        <ul>
+          <li class="chatgpt">
+            <a href="https://chat.openai.com" target="_blank" rel="noopener noreferrer">🤖 ChatGPT</a>
+          </li>
+          <li class="whatsapp">
+            <a href="https://web.whatsapp.com" target="_blank" rel="noopener noreferrer">📱 WhatsApp</a>
+          </li>
+          <li class="gmail">
+            <a href="https://mail.google.com" target="_blank" rel="noopener noreferrer">✉️ Gmail</a>
+          </li>
+          <li class="youtube">
+            <a href="https://youtube.com" target="_blank" rel="noopener noreferrer">📺 YouTube</a>
+          </li>
+        </ul>
+      </div>
+      
+      <!-- Second Container -->
+      <div class="bookmark-container">
+        <h2>Other Bookmarks</h2>
+        <ul>
+          <li class="reddit">
+            <a href="https://reddit.com" target="_blank" rel="noopener noreferrer">👽 Reddit</a>
+          </li>
+          <li class="poolsuite">
+            <a href="https://poolsuite.net" target="_blank" rel="noopener noreferrer">📅 Poolsuite</a>
+          </li>
+          <li class="jellyfin">
+            <a href="https://example.com" target="_blank" rel="noopener noreferrer">🪣 Jellyfin</a>
+          </li>
+          <li>
+            <a href="https://example.com" target="_blank" rel="noopener noreferrer">🌐 Another Link</a>
+          </li>
+        </ul>
+      </div>
+  
+    </div>
+
+    <script>
+      // Set initial theme based on system preferences
+      const defaultTheme = (window.matchMedia &&
+        window.matchMedia('(prefers-color-scheme: dark)').matches)
+        ? 'dark'
+        : 'light';
+      
+      function setTheme(theme) {
+        if (theme === 'dark') {
+          document.body.classList.add('dark-mode');
+        } else {
+          document.body.classList.remove('dark-mode');
+        }
+      }
+      
+      // Initialize theme
+      setTheme(defaultTheme);
+      
+      // Toggle theme on button click
+      const toggleButton = document.getElementById('toggle-mode');
+      toggleButton.addEventListener('click', () => {
+        if (document.body.classList.contains('dark-mode')) {
+          setTheme('light');
+        } else {
+          setTheme('dark');
+        }
+      });
+    </script>
+  </body>
+  </html>
