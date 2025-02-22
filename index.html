@@ -5,11 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Home Page</title>
   
-  <!-- Favicon -->
-  <link rel="icon" href="favicon.png" type="image/png">
+    <!-- Favicon -->
+    <link rel="icon" href="favicon.png" type="image/png">
 
     <!-- Import a Google Font for a nicer look -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap">
 
     <style>
       /* Base styling */
@@ -20,16 +20,40 @@
       }
   
       body {
-        font-family: 'Roboto', sans-serif;
+        font-family: 'Open Sans', sans-serif;
         background: #e9f3f9 url('light-background.jpg') no-repeat center center fixed;
         background-size: cover;
         color: #333;
         display: flex;
+        flex-direction: column;
         align-items: center;
         justify-content: center;
         height: 100vh;
         padding: 1rem;
         /*animation: fadeIn 1s ease-in;*/
+      }
+  
+      /* Date and Time Widget Styling */
+      #datetime-widget {
+        position: relative;            /* Remove fixed positioning */
+        margin: 1rem auto 2rem auto;    /* Center it; adds margin below */
+        text-align: center;            /* Center the text */
+        /* Remove background & border since we want just text */
+      }
+      /* Time text: bigger and bold */
+      #datetime-widget #time {
+        font-size: 4rem;
+        font-weight: bold;
+        line-height: 1.2;
+      }
+      /* Date text: smaller */
+      #datetime-widget #date {
+        font-size: 1.5rem;
+        line-height: 1.2;
+      }
+
+      body:not(.dark-mode) #datetime-widget {
+        color: #333;
       }
   
       /* Fade in animation for the page */
@@ -107,7 +131,7 @@
   
       .bookmark-container a {
         text-decoration: none;
-        font-weight: 500;
+        font-weight: 550;
         color: inherit;
         transition: transform 0.2s ease, opacity 0.2s ease;
       }
@@ -124,7 +148,9 @@
       .youtube { color: #ff0000; }
       .reddit { color: #ff4500; }
       .poolsuite { color: #b86e4c; }
-      .jellyfin { color: #8a6ad1; }
+      .deepseek { color: #4166d5; }
+      .immich { color: #accbfa; }
+      .tailscale { color: #dad6d5; }
 
       /* Manual dark mode override */
       body.dark-mode {
@@ -136,15 +162,16 @@
       body:not(.dark-mode) {
         background: #e9f3f9 url('light-background.jpg') no-repeat center center fixed;
         background-size: cover;
-        color: #333;
+        color: #fff;
       }
 
       /* Bookmark container dark mode adjustment */
       body.dark-mode .bookmark-container {
-        background: rgba(44, 44, 44, 0.5);
+        background: rgba(44, 44, 44, 0.75);
       }
       body:not(.dark-mode) .bookmark-container {
-        background: rgba(190, 190, 190, 0.5);
+        /*background: rgba(190, 190, 190, 0.85);*/
+        background: rgba(44, 44, 44, 0.75);
       }
 
       /* Styling the dark/light mode buttons */
@@ -182,42 +209,58 @@
       <img src="device-theme.png" alt="Theme Toggle" style="height:1.5rem; vertical-align: middle;">
     </button>
 
+    <!-- Date and Time Widget -->
+    <div id="datetime-widget">
+      <div id="time"></div>
+      <div id="date"></div>
+    </div>
+
     <div class="bookmark-wrapper">
       
       <!-- First Container -->
       <div class="bookmark-container">
-        <h2>Bookmarks</h2>
+        <h2>Productivity</h2>
         <ul>
-          <li class="chatgpt">
-            <a href="https://chat.openai.com" target="_blank" rel="noopener noreferrer">🤖 ChatGPT</a>
-          </li>
-          <li class="whatsapp">
-            <a href="https://web.whatsapp.com" target="_blank" rel="noopener noreferrer">📱 WhatsApp</a>
-          </li>
           <li class="gmail">
             <a href="https://mail.google.com" target="_blank" rel="noopener noreferrer">✉️ Gmail</a>
           </li>
-          <li class="youtube">
-            <a href="https://youtube.com" target="_blank" rel="noopener noreferrer">📺 YouTube</a>
+          <li class="chatgpt">
+            <a href="https://chat.openai.com" target="_blank" rel="noopener noreferrer">🤖 ChatGPT</a>
           </li>
+          <li class="deepseek">
+            <a href="https://chat.deepseek.com" target="_blank" rel="noopener noreferrer">🤖 Deepseek</a>
+          </li>
+          <li class="whatsapp">
+            <a href="https://web.whatsapp.com" target="_blank" rel="noopener noreferrer">📱 WhatsApp</a>
+          </li> 
         </ul>
       </div>
       
       <!-- Second Container -->
       <div class="bookmark-container">
-        <h2>Other Bookmarks</h2>
+        <h2>Media</h2>
         <ul>
+          <li class="youtube">
+            <a href="https://youtube.com" target="_blank" rel="noopener noreferrer">📺 YouTube</a>
+          </li>
           <li class="reddit">
-            <a href="https://reddit.com" target="_blank" rel="noopener noreferrer">👽 Reddit</a>
+            <a href="https://reddit.com" target="_blank" rel="noopener noreferrer">⬆️ Reddit</a>
           </li>
           <li class="poolsuite">
-            <a href="https://poolsuite.net" target="_blank" rel="noopener noreferrer">📅 Poolsuite</a>
+            <a href="https://poolsuite.net" target="_blank" rel="noopener noreferrer">📻 Poolsuite</a>
           </li>
-          <li class="jellyfin">
-            <a href="https://example.com" target="_blank" rel="noopener noreferrer">🪣 Jellyfin</a>
+        </ul>
+      </div>
+
+      <!-- Third Container -->
+      <div class="bookmark-container">
+        <h2>Server</h2>
+        <ul>
+          <li class="tailscale">
+            <a href="https://login.tailscale.com/admin/machines" target="_blank" rel="noopener noreferrer">🌐 Tailscale</a>
           </li>
-          <li>
-            <a href="https://example.com" target="_blank" rel="noopener noreferrer">🌐 Another Link</a>
+          <li class="immich">
+            <a href="http://matestation:2283" target="_blank" rel="noopener noreferrer">🖼️ Immich</a>
           </li>
         </ul>
       </div>
@@ -225,11 +268,29 @@
     </div>
 
     <script>
-      // Set initial theme based on system preferences
+      // Date and Time Widget Functionality
+      function updateDateTime() {
+        const timeElem = document.getElementById('time');
+        const dateElem = document.getElementById('date');
+        const now = new Date();
+        
+        // Format the time to show only hours and minutes
+        timeElem.textContent = now.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit', hour12: false});
+        // Format the date as a locale date string
+        dateElem.textContent = now.toLocaleDateString();
+      }
+      updateDateTime();
+      setInterval(updateDateTime, 1000);
+      
+      // Set initial theme based on localStorage or system preferences
       const defaultTheme = (window.matchMedia &&
         window.matchMedia('(prefers-color-scheme: dark)').matches)
-        ? 'dark'
-        : 'light';
+          ? 'dark'
+          : 'light';
+          
+      // Get stored theme if available; otherwise use the default
+      const storedTheme = localStorage.getItem('theme');
+      const themeToApply = storedTheme ? storedTheme : defaultTheme;
       
       function setTheme(theme) {
         if (theme === 'dark') {
@@ -240,15 +301,17 @@
       }
       
       // Initialize theme
-      setTheme(defaultTheme);
+      setTheme(themeToApply);
       
-      // Toggle theme on button click
+      // Toggle theme on button click and save the new theme in localStorage
       const toggleButton = document.getElementById('toggle-mode');
       toggleButton.addEventListener('click', () => {
         if (document.body.classList.contains('dark-mode')) {
           setTheme('light');
+          localStorage.setItem('theme', 'light');
         } else {
           setTheme('dark');
+          localStorage.setItem('theme', 'dark');
         }
       });
     </script>
