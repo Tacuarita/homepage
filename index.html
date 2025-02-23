@@ -151,6 +151,13 @@
       .deepseek { color: #4166d5; }
       .immich { color: #accbfa; }
       .tailscale { color: #dad6d5; }
+      .github { color: #0d1117; }
+      .moodle { color: #f68121; }
+      .fenix { color: #e3eefd; }
+      .webmail { color: #c7e0f4; }
+      .bitbucket { color: #0c66e4; }
+      .jira { color: #0c66e4; }
+      .odoo { color: #714b67; }
 
       /* Manual dark mode override */
       body.dark-mode {
@@ -194,11 +201,70 @@
       #toggle-mode img {
         transition: filter 0.3s ease;
       }
+
       body.dark-mode #toggle-mode img {
         filter: invert(1);
       }
+
       body:not(.dark-mode) #toggle-mode img {
         filter: invert(0);
+      }
+
+      /* Dropdown styling for profile selection */
+      .dropdown {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        width: auto;
+      }
+
+      .dropdown-toggle {
+        padding: 0.5rem 1rem;
+        border: none;
+        border-radius: 4px;
+        background: rgba(44, 44, 44, 0.75); 
+        color: #fff; /* white text */
+        cursor: pointer;
+        font-weight: bold;
+        transition: background 0.3s ease;
+        scale: 1.1;
+      }
+
+      .dropdown-toggle:hover {
+        opacity: 0.8;
+      }
+
+      .dropdown-menu {
+        display: none;
+        position: fixed;
+        top: 3.5rem;
+        left: 0.87rem;
+        background: rgba(44, 44, 44, 0.75); 
+        border-radius: 4px;
+        width: auto;
+      }
+
+      .dropdown-menu .dropdown-item {
+        padding: 0.5rem 1rem;
+        cursor: pointer;
+      }
+      
+      .dropdown-menu .dropdown-item:hover {
+        opacity: 0.8;
+      }
+
+      .dropdown.active .dropdown-menu {
+        display: block;
+      }
+  
+      /* Hide profile sections by default */
+      .bookmark-profile {
+        display: none;
+      }
+
+      /* Display only the active profile */
+      .bookmark-profile.active {
+        display: block;
       }
   </style>
 
@@ -215,56 +281,128 @@
       <div id="date"></div>
     </div>
 
-    <div class="bookmark-wrapper">
-      
-      <!-- First Container -->
-      <div class="bookmark-container">
-        <h2>Productivity</h2>
-        <ul>
-          <li class="gmail">
-            <a href="https://mail.google.com" target="_blank" rel="noopener noreferrer">✉️ Gmail</a>
-          </li>
-          <li class="chatgpt">
-            <a href="https://chat.openai.com" target="_blank" rel="noopener noreferrer">🤖 ChatGPT</a>
-          </li>
-          <li class="deepseek">
-            <a href="https://chat.deepseek.com" target="_blank" rel="noopener noreferrer">🤖 Deepseek</a>
-          </li>
-          <li class="whatsapp">
-            <a href="https://web.whatsapp.com" target="_blank" rel="noopener noreferrer">📱 WhatsApp</a>
-          </li> 
-        </ul>
+    <!-- Dropdown for selecting bookmark profile -->
+    <div class="dropdown" id="profile-dropdown">
+      <button class="dropdown-toggle">Bookmarks</button>
+      <div class="dropdown-menu">
+        <div class="dropdown-item" data-target="personal">🐸</div>
+        <div class="dropdown-item" data-target="work">💼</div>
+        <div class="dropdown-item" data-target="university">📝</div>
       </div>
-      
-      <!-- Second Container -->
-      <div class="bookmark-container">
-        <h2>Media</h2>
-        <ul>
-          <li class="youtube">
-            <a href="https://youtube.com" target="_blank" rel="noopener noreferrer">📺 YouTube</a>
-          </li>
-          <li class="reddit">
-            <a href="https://reddit.com" target="_blank" rel="noopener noreferrer">⬆️ Reddit</a>
-          </li>
-          <li class="poolsuite">
-            <a href="https://poolsuite.net" target="_blank" rel="noopener noreferrer">📻 Poolsuite</a>
-          </li>
-        </ul>
-      </div>
+    </div>
 
-      <!-- Third Container -->
-      <div class="bookmark-container">
-        <h2>Server</h2>
-        <ul>
-          <li class="tailscale">
-            <a href="https://login.tailscale.com/admin/machines" target="_blank" rel="noopener noreferrer">🌐 Tailscale</a>
-          </li>
-          <li class="immich">
-            <a href="http://matestation:2283" target="_blank" rel="noopener noreferrer">🖼️ Immich</a>
-          </li>
-        </ul>
+    <!-- Personal Bookmarks (default) -->
+    <div id="personal" class="bookmark-profile active">
+      <div class="bookmark-wrapper">
+        <!-- First Container -->
+        <div class="bookmark-container">
+          <h2>Productivity</h2>
+          <ul>
+            <li class="gmail">
+              <a href="https://mail.google.com" target="_blank" rel="noopener noreferrer">✉️ Gmail</a>
+            </li>
+            <li class="chatgpt">
+              <a href="https://chat.openai.com" target="_blank" rel="noopener noreferrer">🤖 ChatGPT</a>
+            </li>
+            <!-- <li class="deepseek">
+              <a href="https://chat.deepseek.com" target="_blank" rel="noopener noreferrer">🤖 Deepseek</a>
+            </li> -->
+            <li class="github">
+              <a href="https://github.com" target="_blank" rel="noopener noreferrer">💻 GitHub</a>
+            </li>
+          </ul>
+        </div>
+        
+        <!-- Second Container -->
+        <div class="bookmark-container">
+          <h2>Media</h2>
+          <ul>
+            <li class="youtube">
+              <a href="https://youtube.com" target="_blank" rel="noopener noreferrer">📺 YouTube</a>
+            </li>
+            <li class="reddit">
+              <a href="https://reddit.com" target="_blank" rel="noopener noreferrer">⬆️ Reddit</a>
+            </li>
+            <li class="poolsuite">
+              <a href="https://poolsuite.net" target="_blank" rel="noopener noreferrer">📻 Poolsuite</a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Third Container -->
+        <div class="bookmark-container">
+          <h2>Server</h2>
+          <ul>
+            <li class="tailscale">
+              <a href="https://login.tailscale.com/admin/machines" target="_blank" rel="noopener noreferrer">🌐 Tailscale</a>
+            </li>
+            <li class="immich">
+              <a href="http://matestation:2283" target="_blank" rel="noopener noreferrer">🖼️ Immich</a>
+            </li>
+          </ul>
+        </div>
       </div>
-  
+    </div>
+
+    <!-- Work Bookmarks (initially hidden) -->
+    <div id="work" class="bookmark-profile">
+      <div class="bookmark-wrapper">
+        <div class="bookmark-container">
+          <h2>Productivity</h2>
+          <ul>
+            <li class="gmail">
+              <a href="https://mail.google.com" target="_blank" rel="noopener noreferrer">✉️ Gmail</a>
+            </li>
+            <li class="chatgpt">
+              <a href="https://chat.openai.com" target="_blank" rel="noopener noreferrer">🤖 ChatGPT</a>
+            </li>
+            <!-- <li class="deepseek">
+              <a href="https://chat.deepseek.com" target="_blank" rel="noopener noreferrer">🤖 Deepseek</a>
+            </li> -->
+            <li class="github">
+              <a href="https://github.com" target="_blank" rel="noopener noreferrer">💻 GitHub</a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="bookmark-container">
+          <h2>Work</h2>
+          <ul>
+            <li class="bitbucket">
+              <a href="https://mail.google.com" target="_blank" rel="noopener noreferrer">🪣 BitBucket</a>
+            </li>
+            <li class="jira">
+              <a href="https://chat.openai.com" target="_blank" rel="noopener noreferrer">✅ Jira</a>
+            </li>
+            <li class="odoo">
+              <a href="https://github.com" target="_blank" rel="noopener noreferrer">📅 Odoo</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- University Bookmarks (initially hidden) -->
+    <div id="university" class="bookmark-profile">
+      <div class="bookmark-wrapper">
+        <div class="bookmark-container">
+          <h2>University</h2>
+          <ul>
+            <li class="moodle">
+              <a href="https://canvas.instructure.com" target="_blank" rel="noopener noreferrer">🎓 Moodle</a>
+            </li>
+            <li class="fenix">
+              <a href="https://moodle.youruniversity.edu" target="_blank" rel="noopener noreferrer">📑 Fenix</a>
+            </li>
+            <li class="webmail">
+              <a href="https://canvas.instructure.com" target="_blank" rel="noopener noreferrer">✉️ Webmail</a>
+            </li>
+            <li class="chatgpt">
+              <a href="https://chat.openai.com" target="_blank" rel="noopener noreferrer">🤖 ChatGPT</a>
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
 
     <script>
@@ -314,6 +452,48 @@
           localStorage.setItem('theme', 'dark');
         }
       });
+
+      // Dropdown functionality for profile selection
+      const dropdown = document.getElementById('profile-dropdown');
+      const dropdownToggle = dropdown.querySelector('.dropdown-toggle');
+      const dropdownItems = dropdown.querySelectorAll('.dropdown-item');
+      const profiles = document.querySelectorAll('.bookmark-profile');
+      
+      // Toggle dropdown open/close when clicking the toggle button
+      dropdownToggle.addEventListener('click', () => {
+        dropdown.classList.toggle('active');
+      });
+      
+      // When clicking a dropdown item, switch profiles
+      dropdownItems.forEach(item => {
+        item.addEventListener('click', () => {
+          // Remove active class from all profiles
+          profiles.forEach(profile => profile.classList.remove('active'));
+          // Get target from the clicked item and display corresponding profile
+          const targetProfile = item.getAttribute('data-target');
+          document.getElementById(targetProfile).classList.add('active');
+          // Update dropdown button text to show current selection
+          dropdownToggle.textContent = item.textContent;
+          // Close the dropdown
+          dropdown.classList.remove('active');
+          // Store active profile in localStorage
+          localStorage.setItem('bookmarkProfile', targetProfile);
+        });
+      });
+      
+      // On page load, retrieve the last active profile (default to personal)
+      const storedProfile = localStorage.getItem('bookmarkProfile') || 'personal';
+      // Remove "active" class from all bookmark profiles
+      document.querySelectorAll('.bookmark-profile').forEach(profile => {
+        profile.classList.remove('active');
+      });
+      // Add "active" to the stored profile
+      document.getElementById(storedProfile).classList.add('active');
+      // Also set the dropdown button text accordingly
+      const activeItem = document.querySelector(`.dropdown-item[data-target="${storedProfile}"]`);
+      if(activeItem) {
+        dropdownToggle.textContent = activeItem.textContent;
+      }
     </script>
   </body>
   </html>
